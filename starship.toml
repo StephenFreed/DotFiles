@@ -27,7 +27,7 @@ renamed = "[${count}(yellow)]"
 deleted = "[{count}](red)"
 conflicted = "[Conflicted](red)"
 style = "#E29257"
-format = "[$ahead$behind$diverged$staged$untracked$modified$renamed$deleted$conflicted](#E29257) "
+format = "[$ahead$behind$diverged$staged$untracked$modified$renamed$deleted$conflicted](#E29257)"
 
 [git_state]
 style = "#E29257"
