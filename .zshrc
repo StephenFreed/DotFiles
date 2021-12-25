@@ -12,4 +12,5 @@ precmd () {print -Pn "\e]0;%~\a\w"}
 # starship adds the init script to your shell's config file
 eval "$(starship init zsh)"
 
+export PATH="/usr/local/bin:$PATH"
 # ---------------------------------------------------------------------------
