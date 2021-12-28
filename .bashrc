@@ -9,3 +9,4 @@ export PS1="\[$(tput setaf 7)\] ➤ \[$(tput setaf 6)\]\W\[$(tput setaf 7)\] ➤
 # export PS1="\u@\h \[$(tput setaf 7)\] ➤ \[$(tput setaf 6)\]\W\[$(tput setaf 7)\] ➤\[$(tput setaf 1)\]\$(parse_git_branch) \[$(tput setaf 7)\]"
 # does this work yet
 # nope
+# maybe?
