@@ -23,7 +23,7 @@ my_repo = Repo('/users/stephenfreed/projects/dot-files/.git')
 
 my_repo.git.add(['--all'])
 my_repo.index.commit('script auto push')
-origin = my_repo.remote('https://github.com/StephenFreed/Dot-Files.git')
+origin = my_repo.remote('origin')
 origin.push()
 
 
