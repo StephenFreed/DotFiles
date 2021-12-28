@@ -20,11 +20,6 @@ repo = Repo(PATH_OF_GIT_REPO)
 
 def git_push():
     try:
-        # repo.index.add('--all')
-        # origin = repo.remotes.origin
-        # origin.push()
-        # origin = repo.remote('/Users/stephenfreed/Projects/Dot-Files')
-        # origin.push()
         repo.git.add(A=True)
         time.sleep(1)
         repo.index.commit(COMMIT_MESSAGE + dt)
