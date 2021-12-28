@@ -17,20 +17,20 @@ PATH_OF_GIT_REPO = r'/Users/stephenfreed/Projects/Dot-Files/.git'
 dt = datetime.now().strftime('%d-%m-%y %H:%M:%S')
 COMMIT_MESSAGE = 'script auto push '
 repo = Repo(PATH_OF_GIT_REPO)
-#3
+
 def git_push():
     try:
-        # repo.git.add(A=True)
-        repo.index.add('--all')
+        repo.git.add(A=True)
+        # repo.index.add('--all')
         time.sleep(1)
         repo.index.commit(COMMIT_MESSAGE + dt)
         time.sleep(1)
-        # origin = repo.remote(name='origin')
-        #origin = repo.remotes.origin
+        origin = repo.remote(name='origin')
+        # origin = repo.remotes.origin
         # origin.push()
-        origin = repo.remote('/Users/stephenfreed/Projects/Dot-Files')
-        # origin.push(refspec='{}:{}'.format('main', 'main'))
-        origin.push()
+        # origin = repo.remote('/Users/stephenfreed/Projects/Dot-Files')
+        origin.push(refspec='{}:{}'.format('main', 'main'))
+        # origin.push()
     except:
         with open('/Users/stephenfreed/Projects/Dot-Files/script_log_file.txt', 'a') as my_file:
             my_file.write('ERROR While Pushing Code ' + dt + '\n')
