@@ -30,7 +30,8 @@ def git_push():
         repo = Repo(PATH_OF_GIT_REPO)
         repo.git.add(update=True)
         repo.index.commit('script auto push')
-        origin = repo.remote(name='origin')
+        # origin = repo.remote(name='origin')
+        origin = 'https://github.com/StephenFreed/Dot-Files.git'
         repo.git.push("origin", "HEAD:refs/for/main")
         # origin.push()
     except:
