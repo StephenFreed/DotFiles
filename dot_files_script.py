@@ -20,17 +20,17 @@ repo = Repo(PATH_OF_GIT_REPO)
 
 def git_push():
     try:
-        repo.git.add(A=True)
         # repo.index.add('--all')
+        # origin = repo.remotes.origin
+        # origin.push()
+        # origin = repo.remote('/Users/stephenfreed/Projects/Dot-Files')
+        # origin.push()
+        repo.git.add(A=True)
         time.sleep(1)
         repo.index.commit(COMMIT_MESSAGE + dt)
         time.sleep(1)
         origin = repo.remote(name='origin')
-        # origin = repo.remotes.origin
-        # origin.push()
-        # origin = repo.remote('/Users/stephenfreed/Projects/Dot-Files')
         origin.push(refspec='{}:{}'.format('main', 'main'))
-        # origin.push()
     except:
         with open('/Users/stephenfreed/Projects/Dot-Files/script_log_file.txt', 'a') as my_file:
             my_file.write('ERROR While Pushing Code ' + dt + '\n')
