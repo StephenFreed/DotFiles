@@ -23,5 +23,6 @@ fi
 # Aliases
 alias python="python3"
 alias vim="nvim"
+alias tree="tree -L 2"
 # ---------------------------------------------------------------------------
 
