@@ -13,7 +13,11 @@ export TEST_USER="USER TEST WORKED"
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
 export PATH
+# PATH For Starship Config
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# PATH For Java 17
+export JAVA_HOME=$(/usr/libexec/java_home)
+# Path For Maven
 
 # Run Python Virtual Env In Vim
 if [[ -n $VIRTUAL_ENV && -e "${VIRTUAL_ENV}/bin/activate" ]]; then
