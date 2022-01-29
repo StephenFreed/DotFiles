@@ -12,6 +12,7 @@ shutil.copyfile('/Users/stephenfreed/.ideavimrc', '/Users/stephenfreed/Projects/
 shutil.copyfile('/Users/stephenfreed/.vimrc', '/Users/stephenfreed/Projects/Dot-Files/.vimrc')
 shutil.copyfile('/Users/stephenfreed/.zshenv', '/Users/stephenfreed/Projects/Dot-Files/.zshenv')
 shutil.copyfile('/Users/stephenfreed/.zshrc', '/Users/stephenfreed/Projects/Dot-Files/.zshrc')
+shutil.copyfile('/Users/stephenfreed/Projects/commands.txt', '/Users/stephenfreed/Projects/Dot-Files/commands.txt')
 
 # GitPython will add/commit/push if directory has changed
 PATH_OF_GIT_REPO = r'/Users/stephenfreed/Projects/Dot-Files/.git'

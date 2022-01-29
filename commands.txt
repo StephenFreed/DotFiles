@@ -1,0 +1,24 @@
+
+
+~~~~~~~~~~~~~ SpringBoot ~~~~~~~~~~~~~
+
+curl https://start.spring.io
+
+curl https://start.spring.io/starter.zip \
+-d applicationName=App-Name\
+-d type=maven-project \
+-d language=java \
+-d bootVersion=2.6.3 \    # UPDATE THIS
+-d groupId=com.exampleurl \
+-d artifactId=appname \
+-d packageName=com.exampleurl.appname \
+-d description=SpringBoot-Application \
+-d packageName=com.exampleurl.appname \
+-d packaging=jar \
+-d javaVersion=17 \
+-d name=appname \
+-o SpringBootInit.zip \
+-d dependencies=web \
+
+~~~~~~~~~~~~~ SpringBoot ~~~~~~~~~~~~~
+
