@@ -1,7 +1,7 @@
 #!/Users/stephenfreed/Projects/Dot-Files/Dot-Files-Script-Py/bin/python3
 
 import shutil
-from git.repo import Repo
+from git.repo import Repo  # type: ignore
 import time
 from datetime import datetime
 
@@ -20,6 +20,7 @@ dt = datetime.now().strftime('%d-%m-%y %H:%M:%S')
 COMMIT_MESSAGE = 'script auto push '
 repo = Repo(PATH_OF_GIT_REPO)
 
+
 def git_push():
     try:
         repo.git.add(A=True)
@@ -28,9 +29,10 @@ def git_push():
         time.sleep(1)
         origin = repo.remote(name='origin')
         origin.push(refspec='{}:{}'.format('main', 'main'))
-    except:
+    except: # noqa
         with open('/Users/stephenfreed/Projects/Dot-Files/script_log_file.txt', 'a') as my_file:
             my_file.write('ERROR While Pushing Code ' + dt + '\n')
+
+
 if repo.is_dirty(untracked_files=True):
     git_push()
-
