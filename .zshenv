@@ -1,7 +1,7 @@
 # Environment Variables
 # ---------------------------------------------------------------------------
 
-export TEST_USER="USER TEST WORKED"
+export TEST_USER="USER TEST WORKED From .zshenv"
 
 # ---------------------------------------------------------------------------
 
