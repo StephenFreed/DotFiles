@@ -22,3 +22,39 @@ curl https://start.spring.io/starter.zip \
 
 ~~~~~~~~~~~~~ SpringBoot ~~~~~~~~~~~~~
 
+
+~~~~~~~~~~~~~ Python ~~~~~~~~~~~~~
+
+# venv naming convention
+my_project_venv
+
+# create venv
+python3 -m venv NAME-OF-ENVIRONMENT
+
+# activate venv
+source VENV_DIR/bin/activate
+
+# check corrct python is being used
+which python
+
+# deactivate venv
+deactivate
+
+# create requirements.txt
+pip freeze > requirements.txt
+
+# install requirements.txt
+pip install -r requirements.txt
+
+ ~~~~~~~~~~~~ Python ~~~~~~~~~~~~~
+
+
+ ~~~~~~~~~~~~ Flask ~~~~~~~~~~~~~
+# set debug
+set FLASK_DEBUG=1 # Windows
+export FLASK_DEBUG=1 # Mac/Linux
+
+# run Flask
+flask run
+
+ ~~~~~~~~~~~~ Flask ~~~~~~~~~~~~~
