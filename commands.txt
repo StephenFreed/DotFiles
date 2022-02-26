@@ -46,10 +46,19 @@ pip freeze > requirements.txt
 # install requirements.txt
 pip install -r requirements.txt
 
+# show installed and not their dependencies
+pip list --not-required
+
  ~~~~~~~~~~~~ Python ~~~~~~~~~~~~~
 
 
  ~~~~~~~~~~~~ Flask ~~~~~~~~~~~~~
+
+
+# set app name in terminal
+set FLASK_APP=app_name.py # Windows
+export FLASK_APP=app_name.py # Mac/Linux
+
 # set debug
 set FLASK_DEBUG=1 # Windows
 export FLASK_DEBUG=1 # Mac/Linux
@@ -57,4 +66,9 @@ export FLASK_DEBUG=1 # Mac/Linux
 # run Flask
 flask run
 
+# run app with debug in if name main
+python app.py
+
+# show package dependencies
+pip show package_name
  ~~~~~~~~~~~~ Flask ~~~~~~~~~~~~~
