@@ -27,6 +27,7 @@ fi
 # Aliases
 alias python="python3"
 alias vim="nvim"
+alias gittree="git ls-tree -r --name-only HEAD | tree --fromfile"
 # alias tree="tree -L 2"
 # ---------------------------------------------------------------------------
 
