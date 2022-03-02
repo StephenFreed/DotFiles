@@ -20,7 +20,7 @@ export PS1="\[$(tput setaf 7)\] ➤ \[$(tput setaf 6)\]\W\[$(tput setaf 7)\] ➤
 # Environment Variables
 # ---------------------------------------------------------------------------
 
-export TEST_USER="USER TEST WORKED"
+# export TEST_USER="USER TEST WORKED"
 
 # ---------------------------------------------------------------------------
 
@@ -30,11 +30,11 @@ export TEST_USER="USER TEST WORKED"
 
 # Setting PATH for Python 3.9
 # The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
-export PATH
+# PATH="/Library/Frameworks/Python.framework/Versions/3.9/bin:${PATH}"
+# export PATH
 
 # Aliases
-alias python="python3"
-alias vim="nvim"
+# alias python="python3"
+# alias vim="nvim"
 
 # ---------------------------------------------------------------------------
