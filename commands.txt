@@ -70,6 +70,9 @@ pip uninstall -y -r <(pip freeze)  # doesn't make file just removes
 # show installed and not their dependencies
 pip list --not-required
 
+# show package dependencies
+pip show package_name
+
  ~~~~~~~~~~~~ Python ~~~~~~~~~~~~~
 
 
@@ -86,47 +89,64 @@ export FLASK_DEBUG=1 # Mac/Linux
 # run Flask
 flask run
 
-# run app with debug in if name main
+# run app with debug in "if name main"
 python app.py
-
-# show package dependencies
-pip show package_name
 
  ~~~~~~~~~~~~ Flask ~~~~~~~~~~~~~
 
 
  ~~~~~~~~~~~~ Vagrant ~~~~~~~~~~~~~
 
-vagrant init
-vagrant init IMAGE/NAME 
+vagrant init (template file)
+vagrant init IMAGE/NAME
 vagrant up
 vagrant halt 
 vagrant suspend
 vagrant resume
 vagrant reload
 vagrant ssh
+vagrant status
 vagrant global-status
 
 ubuntu screen resize problem
 sudo apt-get install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
+
  ~~~~~~~~~~~~ Vagrant ~~~~~~~~~~~~~
 
 
  ~~~~~~~~~~~~ Docker ~~~~~~~~~~~~~
 
+docker pull IMAGENAME
+docker images
+
+docker run hello-world (pulls image if needed)
+docker run -it NAME bash (interactive mode with bash as command)
+docker run --name=yourname -d --rm IMAGENAME (name container / run in detached mode / rm container after running)
+docker run --name containername -d -p 8080:80 image (expose ports host:container)
+
+docker exec -it CONTAINERNAME bash (run a command in a running container)
+docker logs NAMEOFCONTAINER (show logs)
+docker port CONTAINERNAME (show ports)
+docker container top CONTAINERNAME (processes running inside container)
+docker image inspect CONTAINERNAME (image layers)
+
+docker start NAMEOFCONTAINER (run existing container)
+docker stop NAMEOFCONTAINER (stop running container)
+
+docker ps (process status)
+docker ps -a
+docker rm CONTAINERNAME
+docker image rm IMAGENAME
+docker container prune (remove all stopped containers)
+docker system prune (remove all unused containers, networks, images)
+
+docker build -t NEWNAME:v1.0 . (t for tag)
+
+docker image push IMAGENAME:TAG
+
 sudo systemctl status docker
 sudo systemctl enable --now docker
-sudo docker run hello-world
-docker run --name=yourname -d imagename
-sudo docker run -it NAME (interactive)
-sudo docker images
-docker stop NAMEOFCONTAINER
-docker pull IMAGENAME
-docker run -d -t --name nameyourcontainer IMAGENAME
-docker exec -it CONTAINERNAME bash or sh
-docker stop NAME
 docker stats
-docker ps
 
  ~~~~~~~~~~~~ Docker ~~~~~~~~~~~~~
 
@@ -137,6 +157,7 @@ sudo adduser USERNAME
 sudo usermod -a -G sudo USERNAME
 su USERNAME
 df -h --total
+ifconfig -a
 
  ~~~~~~~~~~~~ Linux ~~~~~~~~~~~~~
 
@@ -144,6 +165,11 @@ df -h --total
  ~~~~~~~~~~~~ Ubuntu ~~~~~~~~~~~~~
 
 sudo apt-get update
-sudo apt install ubuntu-desktop
+sudo apt install ubuntu-desktop (install gui on server)
+
+# remove gui from server (add -y flag)
+sudo apt purg ubuntu-desktop
+sudo apt autoremove
+sudo apt autoclean
 
  ~~~~~~~~~~~~ Ubuntu ~~~~~~~~~~~~~
