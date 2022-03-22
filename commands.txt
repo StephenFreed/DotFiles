@@ -159,6 +159,12 @@ su USERNAME
 df -h --total
 ifconfig -a
 
+top
+ps aux
+ps aux | grep "name-of-process"
+kill PROCESSID
+kill -9 PROCESSID
+
  ~~~~~~~~~~~~ Linux ~~~~~~~~~~~~~
 
 
