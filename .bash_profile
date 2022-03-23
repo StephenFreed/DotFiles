@@ -5,6 +5,7 @@
 # Terminal Colors
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export TERM=xterm-256color
 
 # For Git Branch In Terminal
 parse_git_branch() {

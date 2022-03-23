@@ -28,6 +28,7 @@ fi
 # alias pip="pip3"
 alias vim="nvim"
 alias gittree="git ls-tree -r --name-only HEAD | tree --fromfile"
+alias vagrantssh="TERM=xterm-256color vagrant ssh"
 # alias tree="tree -L 2"
 # ---------------------------------------------------------------------------
 

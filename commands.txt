@@ -98,7 +98,7 @@ python app.py
  ~~~~~~~~~~~~ Vagrant ~~~~~~~~~~~~~
 
 vagrant init (template file)
-vagrant init IMAGE/NAME
+vagrant init IMAGE/NAME (ubuntu/xenial64)
 vagrant up
 vagrant halt 
 vagrant suspend
@@ -119,33 +119,47 @@ sudo apt-get install virtualbox-guest-dkms virtualbox-guest-utils virtualbox-gue
 docker pull IMAGENAME
 docker images
 
+docker ps (process status)
+docker ps -a
+
+docker volume create VOLUMENAME
+docker volume ls
+docker volume inspect VOLUMENAME
+docker volume rm VOLUMENAME
+
+docker network create NETWORKNAME
+docker network ls
+docker network inspect NETWORKNAME
+docker network rm NETWORKNAME
+
 docker run hello-world (pulls image if needed)
-docker run -it NAME bash (interactive mode with bash as command)
-docker run --name=yourname -d --rm IMAGENAME (name container / run in detached mode / rm container after running)
-docker run --name containername -d -p 8080:80 image (expose ports host:container)
+docker run -it IMAGENAME bash (interactive mode with bash as command)
+docker run --name=containername -d --rm IMAGENAME (name container / run in detached mode / rm container after running)
+docker run --name containername -d -p 8080:80 IMAGENAME (expose ports host:container)
+docker run --name containername -d -p 8080:80 -v VOLUMENAME:/etc/todos IMAGENAME (mount volume to path)
+docker run --name containername -d -p 8080:80 --network=NETWORKNAME IMAGENAME (specifies container network)
+
+docker stop CONTAINERNAME (stop running container)
+docker start CONTAINERNAME (run existing container)
 
 docker exec -it CONTAINERNAME bash (run a command in a running container)
-docker logs NAMEOFCONTAINER (show logs)
+docker logs CONTAINERNAME (show logs)
 docker port CONTAINERNAME (show ports)
 docker container top CONTAINERNAME (processes running inside container)
 docker image inspect CONTAINERNAME (image layers)
 
-docker start NAMEOFCONTAINER (run existing container)
-docker stop NAMEOFCONTAINER (stop running container)
-
-docker ps (process status)
-docker ps -a
 docker rm CONTAINERNAME
 docker image rm IMAGENAME
 docker container prune (remove all stopped containers)
 docker system prune (remove all unused containers, networks, images)
 
-docker build -t NEWNAME:v1.0 . (t for tag)
-
+docker build -t NEWNAME:v1.0 . (t for tag / builds image)
+docker tag REPO:TAG NEWREPO:NEWTAG (rename image)
+docker commit RUNNINGCONTAINER REPO:TAG (create new image from running container)
 docker image push IMAGENAME:TAG
 
-sudo systemctl status docker
-sudo systemctl enable --now docker
+sudo systemctl status docker (ubuntu)
+sudo systemctl enable --now docker (ubuntu)
 docker stats
 
  ~~~~~~~~~~~~ Docker ~~~~~~~~~~~~~
@@ -153,10 +167,10 @@ docker stats
 
  ~~~~~~~~~~~~ Linux ~~~~~~~~~~~~~
 
-sudo adduser USERNAME
-sudo usermod -a -G sudo USERNAME
-su USERNAME
-df -h --total
+sudo adduser USERNAME (add user)
+sudo usermod -a -G sudo USERNAME (add to group)
+su USERNAME (switch user)
+df -h --total (disk free)
 ifconfig -a
 
 top
