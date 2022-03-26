@@ -158,6 +158,10 @@ docker tag REPO:TAG NEWREPO:NEWTAG (rename image)
 docker commit RUNNINGCONTAINER REPO:TAG (create new image from running container)
 docker image push IMAGENAME:TAG
 
+docker-compose --version
+docker-compose up
+docker-compose down
+
 sudo systemctl status docker (ubuntu)
 sudo systemctl enable --now docker (ubuntu)
 docker stats
