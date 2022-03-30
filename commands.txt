@@ -9,8 +9,15 @@ git add .
 #  stages modified and deleted, without new
 git add -u
 
+git log --oneline
+
 # remove from git, but not local file
 git rm --cached file_name
+
+git remote -v
+git remote add upstream URL-UPSTREAM-REPO
+git fetch upstream
+git merge upstream/BRANCH MYBRANCH
 
 ~~~~~~~~~~~~~ Git ~~~~~~~~~~~~~
 
