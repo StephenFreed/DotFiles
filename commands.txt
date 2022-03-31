@@ -160,7 +160,7 @@ docker image rm IMAGENAME
 docker container prune (remove all stopped containers)
 docker system prune (remove all unused containers, networks, images)
 
-docker build -t NEWNAME:v1.0 . (t for tag / builds image)
+docker build -t NEWNAME:v1.0 . (t for tag / builds image if Dockerfile in current directory)
 docker tag REPO:TAG NEWREPO:NEWTAG (rename image)
 docker commit RUNNINGCONTAINER REPO:TAG (create new image from running container)
 docker image push IMAGENAME:TAG
@@ -203,4 +203,7 @@ sudo apt purg ubuntu-desktop
 sudo apt autoremove
 sudo apt autoclean
 
+systemctl status NAME
+systemctl start NAME
+systemctl enable NAME
  ~~~~~~~~~~~~ Ubuntu ~~~~~~~~~~~~~
