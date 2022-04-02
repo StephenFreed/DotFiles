@@ -207,3 +207,24 @@ systemctl status NAME
 systemctl start NAME
 systemctl enable NAME
  ~~~~~~~~~~~~ Ubuntu ~~~~~~~~~~~~~
+
+
+ ~~~~~~~~~~~~ MacOS ~~~~~~~~~~~~~
+
+ps aux | grep NAME
+brew services list 
+
+ ~~~~~~~~~~~~ MacOS ~~~~~~~~~~~~~
+
+
+ ~~~~~~~~~~~~ MySQL ~~~~~~~~~~~~~
+
+brew services start mysql
+mysql -u USERNAME -p PASSWORD
+show databases;
+create database database_name;
+create user 'USER'@'localhost' identified by 'PASSWORD';
+grant all on DATABASE_NAME.* to 'USERNAME'@'localhost';
+flush privileges;
+
+ ~~~~~~~~~~~~ MySQL ~~~~~~~~~~~~~
