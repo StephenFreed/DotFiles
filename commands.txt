@@ -19,6 +19,10 @@ git remote add upstream URL-UPSTREAM-REPO
 git fetch upstream
 git merge upstream/BRANCH MYBRANCH
 
+git submodule update --init
+
+ git checkout -b experimental origin/experimental
+
 ~~~~~~~~~~~~~ Git ~~~~~~~~~~~~~
 
 
@@ -41,6 +45,8 @@ curl https://start.spring.io/starter.zip \
 -d name=appname \
 -o SpringBootInit.zip \
 -d dependencies=web \
+
+mvn --version
 
 ~~~~~~~~~~~~~ SpringBoot ~~~~~~~~~~~~~
 
