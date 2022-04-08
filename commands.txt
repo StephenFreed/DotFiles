@@ -21,7 +21,10 @@ git merge upstream/BRANCH MYBRANCH
 
 git submodule update --init
 
- git checkout -b experimental origin/experimental
+git checkout -b experimental origin/experimental
+
+git commit --amend
+git rebase -i HEAD~4 (when text editor opens replace pick with reword and save)
 
 ~~~~~~~~~~~~~ Git ~~~~~~~~~~~~~
 
@@ -47,6 +50,7 @@ curl https://start.spring.io/starter.zip \
 -d dependencies=web \
 
 mvn --version
+mvn dependency:resolve
 
 ~~~~~~~~~~~~~ SpringBoot ~~~~~~~~~~~~~
 
@@ -226,6 +230,8 @@ brew services list
  ~~~~~~~~~~~~ MySQL ~~~~~~~~~~~~~
 
 brew services start mysql
+brew services stop mysql
+brew services restart mysql
 mysql -u USERNAME -p PASSWORD
 show databases;
 create database database_name;
