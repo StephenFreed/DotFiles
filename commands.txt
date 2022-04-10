@@ -26,6 +26,8 @@ git checkout -b experimental origin/experimental
 git commit --amend
 git rebase -i HEAD~4 (when text editor opens replace pick with reword and save)
 
+ssh git@stephenfreedss:repo
+
 ~~~~~~~~~~~~~ Git ~~~~~~~~~~~~~
 
 
