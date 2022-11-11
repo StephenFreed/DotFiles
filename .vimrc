@@ -86,9 +86,6 @@ nnoremap <leader>c :sp ~/.commands.cfg<CR>
 " bring up commands file
 nnoremap <leader>i :sp ~/.vimrc<CR>
 
-" open man page of what is under cursor
-nnoremap <leader>m <S-k>
-
 " word spelling
 nnoremap <leader>z z=
 
@@ -119,10 +116,7 @@ vnoremap < <gv
 set splitbelow splitright
 nnoremap <leader>vs :vertical split<CR>
 nnoremap <leader>sp :split<CR>
-nnoremap <leader>tt :vertical split<CR> :terminal<CR>i
-nnoremap <leader>tb :10sp<CR> :terminal<CR>i
 tnoremap <Esc> <C-\><C-n> " allows normal mode in terminal to switch windows
-nnoremap <leader>l :MaximizerToggle<CR>
 nnoremap <leader>wb :windo set scrollbind<CR>
 nnoremap <leader>wnb :windo set noscrollbind<CR>
 
@@ -148,15 +142,11 @@ nnoremap  <leader>tf :tabfirst<CR>
 nnoremap  <leader>tl :tablast<CR>
 
 " buffers
-" nnoremap  <leader>bn :bNext<CR>
-" nnoremap  <leader>bp :bprevious<CR>
-nnoremap  <leader>bn :BufferLineCycleNext<CR>
-nnoremap  <leader>bp :BufferLineCyclePrev<CR>
+nnoremap  <leader>bn :bNext<CR>
+nnoremap  <leader>bp :bprevious<CR>
 nnoremap  <leader>bf :bfirst<CR>
 nnoremap  <leader>bl :blast<CR>
-nnoremap  <leader>bm :BufferLineMoveNext<CR>
-nnoremap  <leader>bb :BufferLineMovePrev<CR>
-nnoremap  <leader>bd :Bdelete<CR>
+nnoremap  <leader>bd :bdelete<CR>
 
 " marks
 " m<a>
@@ -168,44 +158,5 @@ nnoremap  <leader>bd :Bdelete<CR>
 " commands
 " @q
 " @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Run Files "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup exe_code
-    autocmd!
-
-    " execute bash code 
-    autocmd FileType sh nnoremap <buffer> <localleader>r
-            \ :20sp<CR> :terminal bash %<CR> :startinsert<CR>
-
-    " execute python code 
-    autocmd FileType python nnoremap <buffer> <localleader>r
-            \ :20sp<CR> :terminal python3 %<CR> :startinsert<CR>
-
-    " compile java code 
-    autocmd FileType java nnoremap <buffer> <localleader>p
-            \ :10sp<CR> :terminal javac %<CR> :startinsert<CR>
-
-    " execute java code 
-    autocmd FileType java nnoremap <buffer> <localleader>r
-            \ :10sp<CR> :terminal java %:t:r<CR> :startinsert<CR>
-    
-    " execute JavaScript code 
-    autocmd FileType javascript nnoremap <buffer> <localleader>r
-            \ :10sp<CR> :terminal node %<CR> :startinsert<CR>
-
-    " execute golang code
-    autocmd FileType go nnoremap <buffer> <localleader>r
-            \ :10sp<CR> :terminal go run %<CR> :startinsert<CR>
-
-    " compile c++ code
-    autocmd FileType cpp nnoremap <buffer> <localleader>p
-            \ :10sp<CR> :terminal clang++ -std=c++11 % -o '%:r_runnable'<CR> :startinsert<CR>
-
-    " execute c++ code
-    autocmd FileType cpp nnoremap <buffer> <localleader>r
-            \ :10sp<CR> :terminal '%:r_runnable'<CR> :startinsert<CR>
-
-augroup END
 
 
