@@ -74,4 +74,4 @@ nnoremap <silent> <C-k> :resize +3<CR>
 
 " call plug#end()
 
-
+# test
