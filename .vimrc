@@ -1,77 +1,211 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" colorscheme elflord
+colorscheme habamax
+set termguicolors
+set background=dark
+highlight Folded guibg=#569CD6 guifg=black
+highlight FoldColumn guifg=#569CD6
 syntax on
-set mouse=a
 set hidden
-set showmode
-
+set noshowmode
+set conceallevel=0
+" set shell=/bin/zsh
+set updatetime=300
+set timeoutlen=500
+set cmdheight=2
+set fileencoding=utf-8
+set encoding=utf-8
+set shortmess+=c
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let &t_SI = "\e[6 q" " Insert Mode Cursor
-let &t_EI = "\e[2 q" " Everything Else Cursor
-" set guicursor= " cursor always block mode
-
+set mouse=a
+let &t_SI = "\e[6 q" " insert mode cursor
+let &t_EI = "\e[2 q" " everything else cursor
+set paste
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " History "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noswapfile
 set nobackup
+set nowritebackup
 set undodir=~/.vim/undodir
 set undofile
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Searching "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set ignorecase
 set smartcase
 set incsearch
-
+set nohlsearch
+set iskeyword+=-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lines "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set tabstop=4 softtabstop=4
-set shiftwidth=4
+" set smartindent
+set cindent
+set cinoptions=i0,+0
 set expandtab
-set smartindent
-set relativenumber
+set tabstop=4 
+set softtabstop=0
+set shiftwidth=4
+" set relativenumber
 set noerrorbells
 set nu
 set nowrap
 set signcolumn=yes
 set colorcolumn=80
-highlight ColorColumn ctermbg=8 guibg=lightgrey
+highlight ColorColumn ctermbg=234
+
+" Line Folding
+set foldcolumn=2
+" zf to fold 
+" zo to open on line
+" zc to reclose on line
+" zr to restore all
+" zm to minimize all
+" zd to delete one fold
+" zE to erase all folds
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remaps "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" sets leader key to space
 let mapleader = " "
-nnoremap <leader>o o<Esc>
-nnoremap <leader>O O<Esc>
+let maplocalleader = " "
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Window Stuff "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" write source %
+nnoremap <leader>ws :w<CR> :silent! source %<CR>l
+
+" bring up commands file
+nnoremap <leader>c :sp ~/.commands.cfg<CR>
+   
+" bring up commands file
+nnoremap <leader>i :sp ~/.vimrc<CR>
+
+" open man page of what is under cursor
+nnoremap <leader>m <S-k>
+
+" word spelling
+nnoremap <leader>z z=
+
+" set spelling
+nnoremap <leader>sc :set spell<CR>
+" set nospell
+nnoremap <leader>sco :set nospell<CR>
+
+" line spaces
+autocmd VimEnter * nnoremap <leader>O O<Esc>
+autocmd VimEnter * nnoremap <leader>o o<Esc>
+autocmd VimEnter * nnoremap <leader>sb i<space><Esc>
+autocmd VimEnter * nnoremap <leader>sa a<space><Esc>
+
+" moving lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" moving letters
+nnoremap L xp
+nnoremap H xhhp
+
+"keep visual mode after indent
+vnoremap > >gv
+vnoremap < <gv
+
+" window splits
 set splitbelow splitright
-set fillchars+=vert:\ " removes splice | 
-nnoremap <leader>oo <C-w>o
 nnoremap <leader>vs :vertical split<CR>
-nnoremap <leader>t :vertical terminal<CR>
-nnoremap <leader>tt :let $VIM_DIR=expand('%:p:h')<CR>:vertical terminal<CR>cd $VIM_DIR<CR>
-nnoremap <leader>qq <C-w>q
-nnoremap <leader>nn <C-w><C-w>
-nnoremap <leader>rr <C-w>r " rotate buffers
-nnoremap <leader>ff :vertical split<CR> :Explore<CR><C-w>r :vertical resize 45<CR>
+nnoremap <leader>sp :split<CR>
+nnoremap <leader>tt :vertical split<CR> :terminal<CR>i
+nnoremap <leader>tb :10sp<CR> :terminal<CR>i
+tnoremap <Esc> <C-\><C-n> " allows normal mode in terminal to switch windows
+nnoremap <leader>l :MaximizerToggle<CR>
+nnoremap <leader>wb :windo set scrollbind<CR>
+nnoremap <leader>wnb :windo set noscrollbind<CR>
 
-" Make adjusting split sizes more friendly
-noremap <silent> <C-h> :vertical resize -3<CR>
-nnoremap <silent> <C-l> :vertical resize +3<CR>
+" make adjusting split sizes more friendly
+nnoremap <silent> <C-l> :vertical resize -3<CR>
+nnoremap <silent> <C-h> :vertical resize +3<CR>
 nnoremap <silent> <C-j> :resize -3<CR>
 nnoremap <silent> <C-k> :resize +3<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pluggins "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" call plug#begin()
+" move cursor to other windows and window stuff
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wl <C-w>l
+nnoremap <leader>wr <C-w>r " rotate current window
+nnoremap  <leader>wo <C-w>o " closes all other windows
 
-" call plug#end()
+" tabs
+nnoremap  <leader>tab :tabnew<CR>
+nnoremap  <leader>tn :tabNext<CR>
+nnoremap  <leader>tm :tabmove<CR>
+nnoremap  <leader>tf :tabfirst<CR>
+nnoremap  <leader>tl :tablast<CR>
 
-" test
+" buffers
+" nnoremap  <leader>bn :bNext<CR>
+" nnoremap  <leader>bp :bprevious<CR>
+nnoremap  <leader>bn :BufferLineCycleNext<CR>
+nnoremap  <leader>bp :BufferLineCyclePrev<CR>
+nnoremap  <leader>bf :bfirst<CR>
+nnoremap  <leader>bl :blast<CR>
+nnoremap  <leader>bm :BufferLineMoveNext<CR>
+nnoremap  <leader>bb :BufferLineMovePrev<CR>
+nnoremap  <leader>bd :Bdelete<CR>
+
+" marks
+" m<a>
+" '<a>
+" :marks
+
+" macro
+" q<m>
+" commands
+" @q
+" @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Run Files "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup exe_code
+    autocmd!
+
+    " execute bash code 
+    autocmd FileType sh nnoremap <buffer> <localleader>r
+            \ :20sp<CR> :terminal bash %<CR> :startinsert<CR>
+
+    " execute python code 
+    autocmd FileType python nnoremap <buffer> <localleader>r
+            \ :20sp<CR> :terminal python3 %<CR> :startinsert<CR>
+
+    " compile java code 
+    autocmd FileType java nnoremap <buffer> <localleader>p
+            \ :10sp<CR> :terminal javac %<CR> :startinsert<CR>
+
+    " execute java code 
+    autocmd FileType java nnoremap <buffer> <localleader>r
+            \ :10sp<CR> :terminal java %:t:r<CR> :startinsert<CR>
+    
+    " execute JavaScript code 
+    autocmd FileType javascript nnoremap <buffer> <localleader>r
+            \ :10sp<CR> :terminal node %<CR> :startinsert<CR>
+
+    " execute golang code
+    autocmd FileType go nnoremap <buffer> <localleader>r
+            \ :10sp<CR> :terminal go run %<CR> :startinsert<CR>
+
+    " compile c++ code
+    autocmd FileType cpp nnoremap <buffer> <localleader>p
+            \ :10sp<CR> :terminal clang++ -std=c++11 % -o '%:r_runnable'<CR> :startinsert<CR>
+
+    " execute c++ code
+    autocmd FileType cpp nnoremap <buffer> <localleader>r
+            \ :10sp<CR> :terminal '%:r_runnable'<CR> :startinsert<CR>
+
+augroup END
+
+
