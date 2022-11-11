@@ -8,8 +8,7 @@ cp ~/.commands.cfg ~/.dot_files_repo/
 cp ~/.vimrc ~/.dot_files_repo/
 
 STATUS=$(git status -s 2> /dev/null)
-CHANGES=$(($(echo $STATUS | grep " M" | wc -l | xargs) + $(echo $STATUS | grep " R" | wc -l | xargs) + $(echo $STATUS | grep " D" | wc -l | xargs) + $(echo $STATUS | grep "?? " | wc -l | xargs)))
-CHANGES=1
+CHANGES=$(($(echo $STATUS | grep " M" | wc -l | xargs) + $(echo $STATUS | grep "M " | wc -l | xargs) + $(echo $STATUS | grep " R" | wc -l | xargs) + $(echo $STATUS | grep "R " | wc -l | xargs) + $(echo $STATUS | grep " D" | wc -l | xargs) + $(echo $STATUS | grep "D " | wc -l | xargs) + $(echo $STATUS | grep "?? " | wc -l | xargs)))
 
 if [[ $CHANGES > 0 ]]
 then
