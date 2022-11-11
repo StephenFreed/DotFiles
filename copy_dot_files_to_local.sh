@@ -5,9 +5,9 @@ read -p "Overwrite Files? <y/n> " prompt
 if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
 then
     # copies files from git directory .dot-files/ locally
-    cp ~/dot_files/.sf_profile ~/.sf_profile
-    cp ~/dot_files/.commands.cfg ~/.commands.cfg
-    cp ~/dot_files/.vimrc ~/.vimrc
+    cp ~/dotfiles/.sf_profile ~/.sf_profile
+    cp ~/dotfiles/.commands.cfg ~/.commands.cfg
+    cp ~/dotfiles/.vimrc ~/.vimrc
 
     # heredoc to source .sf_profile
     bash_grep=$(grep -s "~/.sf_profile" ~/.bashrc)
@@ -19,7 +19,6 @@ then
     . ~/.sf_profile
 fi
 EOF
-    . ~/.bashrc
     fi
 
     zsh_grep=$(grep -s "~/.sf_profile" ~/.zshrc)
@@ -31,7 +30,8 @@ then
     . ~/.sf_profile
 fi
 EOF
-    . ~/.zshrc
+    source ~/.bashrc
+    source ~/.zshrc
     fi
 
 else
