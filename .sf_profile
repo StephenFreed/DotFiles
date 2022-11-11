@@ -1,0 +1,269 @@
+################################
+# get variables for conditions #
+################################
+u_name=$(uname)  # get uname Darwin(macos) or Linux
+is_zsh=$ZSH_VERSION
+is_bash=$BASH_VERSION
+
+
+# stops error in directory for loop for zsh
+if [[ ${#is_zsh} -ne 0 ]]
+then
+    setopt +o nomatch
+fi
+
+
+###########################
+#     set window title    #
+###########################
+set-window-title() {
+    echo -en "\033]0;$(pwd | sed -e "s;^$HOME;~;")\a"
+}
+function precmd () {
+  echo -ne "\033]0;$(pwd | sed -e "s;^$HOME;~;")\a"
+}
+
+
+##########################
+#     Terminal Colors    #
+##########################
+export TERM=xterm-256color
+export CLICOLOR=1
+if [[ $u_name == "Linux" ]]
+then
+    export LS_COLORS="di=36:ln=1;31:so=37:pi=1;33:ex=35:bd=37:cd=37:su=37:sg=37:tw=32:ow=32"
+elif [[ $u_name == "Darwin" ]]
+then
+    export LSCOLORS="gxBxhxDxfxhxhxhxhxcxcx"
+fi
+export GCC_COLORS="error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01"
+
+
+##########################
+#  SSH Info When Remote  #
+##########################
+# if rc file is moved to remote will show remote ssh in prompt
+# example: ssh -i "key.pem" user@127.0.0.1 -t "bash --rcfile ~/.my_bashrc -i"
+function ssh_info() {
+    if [[ -n "$HOSTNAME" && -n "$SSH_CONNECTION" ]]
+    then
+        current_username=$(whoami)
+        host="SSH|$current_username"
+    else
+        host=""
+    fi
+    [[ -n "$host" ]] && echo "[$host]"
+}
+
+
+##########################
+#       Git Functions    #
+##########################
+git_branch_name() {
+    branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
+    if [[ -n "$branch_name" ]]
+    then
+        if [[ -n "$ZSH_VERSION" ]]
+        then
+            echo "%F{cyan}(%F{red}$branch_name%F{cyan})%F{white}"
+        elif [[ -n "$BASH_VERSION" ]] 
+        then
+            echo "$(tput setaf 6)($(tput setaf 1)$branch_name$(tput setaf 6))$(tput setaf 7)"
+        fi
+    fi
+}
+
+
+git_stats() {
+    STATUS=$(git status -s 2> /dev/null)
+    STAGED=$(($(echo "$STATUS" | grep "M  " | wc -l) + $(echo "$STATUS" | grep "D  " | wc -l) + $(echo "$STATUS" | grep "R  " | wc -l) + $(echo "$STATUS" | grep "C  " | wc -l)+$(echo "$STATUS" | grep "A  " | wc -l)))
+    MODIFIED=$(echo $STATUS | grep " M" | wc -l | xargs)
+    RENAMED=$(echo $STATUS | grep " R" | wc -l | xargs)
+    DELETED=$(echo $STATUS | grep " D" | wc -l | xargs)
+    UNTRACKED=$(echo $STATUS | grep "?? " | wc -l | xargs)
+
+    STATE=$(git status 2> /dev/null)
+    IS_AHEAD=$(echo -n "$STATE" | grep -i "ahead")
+    IS_BEHIND=$(echo -n "$STATE" | grep -i "behind")
+    DIVERGED=$(echo -n "$STATE" | grep -i "diverged")
+    CONFLICTED=$(echo -n "$STATE" | grep -i "conflicted")
+
+    GIT_STATUS=""
+
+    if [[ -n "$ZSH_VERSION" ]]
+    then
+        if [[ $STAGED != 0 ]]
+        then
+            GIT_STATUS+="%F{green}${STAGED}S%F{cyan}|"
+        fi
+        if [[ $MODIFIED != 0 ]]
+        then
+            GIT_STATUS+="%F{red}${MODIFIED}M%F{cyan}|"
+        fi
+        if [[ $RENAMED != 0 ]]
+        then
+            GIT_STATUS+="%F{yellow}${RENAMED}R%F{cyan}|"
+        fi
+        if [[ $DELETED != 0 ]]
+        then
+            GIT_STATUS+="%F{yellow}${DELETED}D%F{cyan}|"
+        fi
+        if [[ $UNTRACKED != 0 ]]
+        then
+            GIT_STATUS+="%F{red}${UNTRACKED}U%F{cyan}|"
+        fi
+
+        if [[ -n $IS_AHEAD ]]
+        then
+            GIT_STATUS+="%F{green}A"
+        fi
+        if [[ -n $IS_BEHIND ]]
+        then
+            GIT_STATUS+="%F{red}B"
+        fi
+        if [[ -n $DIVERGED ]]
+        then
+            GIT_STATUS+="%F{red}X"
+        fi
+        if [[ -n $CONFLICTED ]]
+        then
+            GIT_STATUS+="%F{red}X"
+        fi
+
+    elif [[ -n "$BASH_VERSION" ]]
+    then
+        if [[ $STAGED != 0 ]]
+        then
+            GIT_STATUS+="$(tput setaf 2)${STAGED}S$(tput setaf 6)|"
+        fi
+        if [[ $MODIFIED != 0 ]]
+        then
+            GIT_STATUS+="$(tput setaf 1)${MODIFIED}M$(tput setaf 6)|"
+        fi
+        if [[ $RENAMED != 0 ]]
+        then
+            GIT_STATUS+="$(tput setaf 3)${RENAMED}R$(tput setaf 6)|"
+        fi
+        if [[ $DELETED != 0 ]]
+        then
+            GIT_STATUS+="$(tput setaf 3)${DELETED}D$(tput setaf 6)|"
+        fi
+        if [[ $UNTRACKED != 0 ]]
+        then
+            GIT_STATUS+="$(tput setaf 1)${UNTRACKED}U$(tput setaf 6)|"
+        fi
+
+        if [[ -n $IS_AHEAD ]]
+        then
+            GIT_STATUS+="$(tput setaf 2)A"
+        fi
+        if [[ -n $IS_BEHIND ]]
+        then
+            GIT_STATUS+="$(tput setaf 1)B"
+        fi
+        if [[ -n $DIVERGED ]]
+        then
+            GIT_STATUS+="$(tput setaf 1)X"
+        fi
+        if [[ -n $CONFLICTED ]]
+        then
+            GIT_STATUS+="$(tput setaf 1)X"
+        fi
+    fi
+
+    if [[ ${#GIT_STATUS} -gt 0 ]]
+    then
+        echo "<>$GIT_STATUS"
+    else
+        echo "$GIT_STATUS"
+    fi
+}
+
+##########################
+#    Python Functions    #
+##########################
+
+# disable the default virtualenv prompt
+export VIRTUAL_ENV_DISABLE_PROMPT=0
+
+# activates python env when cd into directory
+function cd() {
+    builtin cd $1 2> /dev/null
+
+    # loop over every subdirectory 
+    virtual_env_dir_name=""
+    for sub_dir in */
+    do
+        # check if branch_dir is directory and has _venv in name
+        if [[ -d "$sub_dir" &&  $sub_dir == *"_env"* ]]
+        then
+            virtual_env_dir_name=$sub_dir
+        fi
+    done
+
+    if [[ -z $VIRTUAL_ENV && -e "${virtual_env_dir_name}/bin/activate" ]]
+    then
+        . "${virtual_env_dir_name}/bin/activate"
+    fi
+}
+
+# if active virtual environment adds into ps1
+function virtualenv_info() {
+    if [[ -n "$VIRTUAL_ENV" ]]
+    then
+        if [[ -n "$ZSH_VERSION" ]]
+        then
+            # strip out the path and just leave the env name
+            venv="%F{white}<>%F{yellow}(${VIRTUAL_ENV##*/})"
+        elif [[ -n "$BASH_VERSION" ]] 
+        then
+            venv="$(tput bold setaf 7)<>$(tput setaf 3)(${VIRTUAL_ENV##*/})"
+        fi
+    else
+        venv=""
+    fi
+    [[ -n "$venv" ]] && echo "$venv"
+}
+
+
+##########################
+#           PS1          #
+##########################
+
+NEWLINE=$'\n'
+if [[ -n "$ZSH_VERSION" ]]
+then
+    setopt PROMPT_SUBST
+    export PS1='%F{magenta}$(ssh_info)%F{white}<>%F{cyan}%1~%F{white}$(git_stats)$(git_branch_name)$(virtualenv_info)%F{white}<> '
+elif [[ -n "$BASH_VERSION" ]] 
+then
+    # Colors = black 0, red 1, green 2, yellow 3, blue 4, magenta 5, cyan 6, white 7
+    export PS1="\[$(tput setaf 5)\]$(ssh_info)\[$(tput setaf 7)\]<>\[$(tput setaf 6)\]\W\[$(tput setaf 7)\]\$(git_stats)\$(git_branch_name)\$(virtualenv_info)\[$(tput setaf 7)\]<> "
+fi
+
+
+##########################
+#         Aliases        #
+##########################
+if [[ -f ~/.ssh_aliases ]]
+then
+    . ~/.ssh_aliases
+fi
+
+if [[ $u_name == "Darwin" ]]
+then
+    alias gittree="git ls-tree -r --name-only HEAD | tree --fromfile"
+    #alias ssh="TERM=xterm-256color ssh"
+    alias vagrantssh="TERM=xterm-256color vagrant ssh"
+fi
+
+if [[ $u_name == "Linux" ]]
+then
+    alias ls="ls --color=auto"
+    alias grep="grep --color=auto"
+fi
+
+alias ll="ls -alF"
+alias da="deactivate"
+
+alias vim="nvim"
