@@ -2,7 +2,8 @@
 " General "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " colorscheme elflord
-colorscheme habamax
+" colorscheme evening
+" colorscheme habamax
 set termguicolors
 set background=dark
 highlight Folded guibg=#569CD6 guifg=black
@@ -58,7 +59,8 @@ set nu
 set nowrap
 set signcolumn=yes
 set colorcolumn=80
-highlight ColorColumn ctermbg=236  " go up and down by 2 to change(232)
+" go up and down by 2 to change(232)
+highlight ColorColumn ctermbg=236
   
 " Line Folding
 set foldcolumn=2
