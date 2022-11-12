@@ -6,7 +6,8 @@ colorscheme habamax
 set termguicolors
 set background=dark
 highlight Folded guibg=#569CD6 guifg=black
-highlight FoldColumn guifg=#569CD6
+highlight FoldColumn guifg=#569CD6 guifg=black
+
 syntax on
 set hidden
 set noshowmode
@@ -44,21 +45,21 @@ set iskeyword+=-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Lines "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set smartindent
+set smartindent
 set cindent
-set cinoptions=i0,+0
+set cino=
 set expandtab
-set tabstop=4 
+set tabstop=2 
 set softtabstop=0
-set shiftwidth=4
+set shiftwidth=2
 " set relativenumber
 set noerrorbells
 set nu
 set nowrap
 set signcolumn=yes
 set colorcolumn=80
-highlight ColorColumn ctermbg=234
-
+highlight ColorColumn ctermbg=236  " go up and down by 2 to change(232)
+  
 " Line Folding
 set foldcolumn=2
 " zf to fold 
@@ -142,11 +143,17 @@ nnoremap  <leader>tf :tabfirst<CR>
 nnoremap  <leader>tl :tablast<CR>
 
 " buffers
+" :ls to see buffers
+" :b1 to select by number
 nnoremap  <leader>bn :bNext<CR>
 nnoremap  <leader>bp :bprevious<CR>
 nnoremap  <leader>bf :bfirst<CR>
 nnoremap  <leader>bl :blast<CR>
 nnoremap  <leader>bd :bdelete<CR>
+
+" netrw
+nnoremap  <leader>e :Explore<CR>
+let g:netrw_liststyle = 3
 
 " marks
 " m<a>
