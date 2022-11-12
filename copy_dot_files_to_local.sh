@@ -9,7 +9,18 @@ then
     cp ~/dotfiles/.commands.cfg ~/.commands.cfg
     cp ~/dotfiles/.vimrc ~/.vimrc
 
-    # heredoc to source .sf_profile
+    # heredoc to source .sf_profile at login
+    bash_profile_grep=$(grep -s "~/.sf_profile" ~/.bash_profile)
+    if [[ -z $bash_profile_grep ]]
+    then
+cat << EOF >> ~/.bash_profile
+if [[ -f ~/.sf_profile ]]
+then
+    . ~/.sf_profile
+fi
+EOF
+    fi
+
     bash_grep=$(grep -s "~/.sf_profile" ~/.bashrc)
     if [[ -z $bash_grep ]]
     then
@@ -30,8 +41,10 @@ then
     . ~/.sf_profile
 fi
 EOF
-    source ~/.bashrc
-    source ~/.zshrc
+    . ~/sf_profile
+    . ~/.bash_profile
+    . ~/.bashrc
+    . ~/.zshrc
     fi
 
 else
