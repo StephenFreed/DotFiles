@@ -4,7 +4,7 @@
 " colorscheme elflord
 " colorscheme evening
 " colorscheme habamax
-set termguicolors
+" set termguicolors
 set background=dark
 highlight Folded guibg=#569CD6 guifg=black
 highlight FoldColumn guifg=#569CD6 guifg=black
@@ -60,7 +60,7 @@ set nowrap
 set signcolumn=yes
 set colorcolumn=80
 " go up and down by 2 to change(232)
-highlight ColorColumn ctermbg=236
+highlight ColorColumn ctermbg=236 guibg=darkgray
   
 " Line Folding
 set foldcolumn=2
