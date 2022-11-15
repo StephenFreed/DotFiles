@@ -3,9 +3,9 @@
 DATE=$(date +"%D-%T-%Z")
 
 # copies files to .dot-files_repo/ git directory
-cp ~/.sf_profile ~/.dot_files_repo/
-cp ~/.commands.cfg ~/.dot_files_repo/
-cp ~/.vimrc ~/.dot_files_repo/
+cp ~/.sf_profile ~/.files/
+cp ~/.commands.cfg ~/.files/
+cp ~/.vimrc ~/.files/
 
 STATUS=$(git status -s 2> /dev/null)
 CHANGES=$(($(echo $STATUS | grep " M" | wc -l | xargs) + $(echo $STATUS | grep "M " | wc -l | xargs) + $(echo $STATUS | grep " R" | wc -l | xargs) + $(echo $STATUS | grep "R " | wc -l | xargs) + $(echo $STATUS | grep " D" | wc -l | xargs) + $(echo $STATUS | grep "D " | wc -l | xargs) + $(echo $STATUS | grep "?? " | wc -l | xargs)))

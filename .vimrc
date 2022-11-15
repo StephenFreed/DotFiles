@@ -58,9 +58,12 @@ set noerrorbells
 set nu
 set nowrap
 set signcolumn=yes
+highlight clear SignColumn
+highlight clear FoldColumn
 set colorcolumn=80
 " go up and down by 2 to change(232)
 highlight ColorColumn ctermbg=236 guibg=darkgray
+highlight LineNr ctermfg=darkgrey
   
 " Line Folding
 set foldcolumn=2
@@ -80,15 +83,15 @@ set foldcolumn=2
 let mapleader = " "
 let maplocalleader = " "
 
-" write source %
-nnoremap <leader>ws :w<CR> :silent! source %<CR>l
-
 " bring up commands file
 nnoremap <leader>c :sp ~/.commands.cfg<CR>
-   
+
 " bring up commands file
 nnoremap <leader>i :sp ~/.vimrc<CR>
 
+" write source %
+nnoremap <leader>ws :w<CR> :silent! source %<CR>l
+   
 " word spelling
 nnoremap <leader>z z=
 
