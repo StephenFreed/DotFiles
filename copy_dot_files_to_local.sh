@@ -41,7 +41,7 @@ then
     . ~/.sf_profile
 fi
 EOF
-    . ~/sf_profile
+    . ~/.sf_profile
     . ~/.bash_profile
     . ~/.bashrc
     . ~/.zshrc
