@@ -4,7 +4,7 @@
 read -p "Overwrite Files? <y/n> " prompt
 if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]
 then
-    # copies files from git directory dotfiles/ locally
+    # copies files from git directory locally
     cp ~/dotfiles/.sf_profile ~/.sf_profile
     cp ~/dotfiles/.commands.cfg ~/.commands.cfg
     cp ~/dotfiles/.vimrc ~/.vimrc

@@ -2,7 +2,7 @@
 
 DATE=$(date +"%D-%T-%Z")
 
-# copies files to .dot-files_repo/ git directory
+# copies files to .files/ git directory
 cp ~/.sf_profile ~/.files/
 cp ~/.commands.cfg ~/.files/
 cp ~/.vimrc ~/.files/
@@ -15,8 +15,8 @@ then
     git add -A
     git commit -m "$(date): Auto Git Push From Laptop"
     git push
-    echo "$DATE PUSHED CHANGES" >> ./script_log_file.txt
+    echo "$DATE PUSHED CHANGES" >> ./log_file.txt
 else
-    echo "$DATE NO CHANGES" >> ./script_log_file.txt
+    echo "$DATE NO CHANGES" >> ./log_file.txt
 fi
 
