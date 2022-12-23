@@ -11,8 +11,6 @@ STATUS=$(git status -s 2> /dev/null)
 CHANGES=$(($(echo $STATUS | grep " M" | wc -l | xargs) + $(echo $STATUS | grep "M " | wc -l | xargs) + $(echo $STATUS | grep " R" | wc -l | xargs) + $(echo $STATUS | grep "R " | wc -l | xargs) + $(echo $STATUS | grep " D" | wc -l | xargs) + $(echo $STATUS | grep "D " | wc -l | xargs) + $(echo $STATUS | grep "?? " | wc -l | xargs)))
 STATE=$(git status 2> /dev/null)
 IS_AHEAD=$(echo -n "$STATE" | grep -i "ahead")
-echo $CHANGES
-echo $IS_AHEAD
 
 if [[ $CHANGES > 0 ]] || [[ ! -z "$IS_AHEAD" ]]
 then
